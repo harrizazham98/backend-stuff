@@ -1,0 +1,29 @@
+<html>
+<header>
+ <!-- paste bootstrap css here -->
+</header>
+<body>
+</body>
+<table class="table">
+ <thead>
+ <th>Id</th>
+ <th>Name</th>
+ <th>Made In</th>
+ <th>Price</th>
+ <th>Active</th>
+ </thead>
+ <tbody>
+ <% products.forEach(function(product){ %>
+ <% if (product.active) { %>
+ <tr>
+ <td><%= product.id%></td>
+ <td><%= product.productName%></td>
+ <td><%= product.MadeIn%></td>
+ <td><%= product.price %></td>
+ <td><%= product.active %></td>
+ </tr>
+ <% } %>
+ <% }); %>
+ </tbody>
+</table>
+</html>
