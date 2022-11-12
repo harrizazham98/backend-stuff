@@ -14,7 +14,7 @@ crossorigin="anonymous">
 integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
 crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color:powderblue;">
 <nav class="navbar navbar-default">
 <div class="container-fluid">
 <div class="navbar-header">
@@ -29,19 +29,17 @@ Product Catalogue
 </div>
 </nav>
 <div class="container-fluid">
-    <p>
-        <%= description %>
-        </p>
+  
         <div class="row">
         <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-        <img src=<%= imageUrl %> alt="...">
+        <img src=<%= imageUrl %> alt="product-image">
         <div class="caption">
-        <h3><%= title%></h3>
+        <h3 style="background-color:DodgerBlue;"><%= title%></h3>
         <p>
-        <a href="">See more products from this manufacturer</a>
+        <a href="/products">See more products </a>
         <p>
-        <p>Product Description</p>
+        <p><%= description %></p>
         </div>
         </div>
         </div>

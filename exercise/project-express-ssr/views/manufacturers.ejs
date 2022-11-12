@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        .caption {
+          border: 5px outset DodgerBlue;
+          background-color: lightblue;    
+          text-align: center;
+        }
+        </style>
 <title>
 <%= title %>
 </title>
@@ -14,12 +21,12 @@ crossorigin="anonymous">
 integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
 crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color:tomato;">
 <nav class="navbar navbar-default">
 <div class="container-fluid">
 <div class="navbar-header">
 <a class="navbar-brand" href="/">
-Product Catalogue
+Manufacturer Catalogue
 </a>
 </div>
 <ul class="nav navbar-nav">
@@ -33,5 +40,24 @@ Product Catalogue
 <%= description %>
 </p>
 </div>
+
+<div class="row">
+    <% manufacturers.forEach(function(p){ %>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+            <img src=<%=p.imageUrl%> alt="product-image">
+            <div class="caption">
+            <h3 style="background-color:Coral;"><%=p.name%></h3>
+            <p>
+            <a href="/manufacturers/<%= p.id %>" class="btn btn-primary">Details</a>
+            </p>
+            </div>
+            </div>
+            </div>
+            
+    
+        <% }); %>
+    </div>
+
 </body>
 </html>
