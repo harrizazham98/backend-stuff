@@ -28,11 +28,26 @@ Product Catalogue
 </ul>
 </div>
 </nav>
-<div class="container-fluid">
+<!-- <div class="container-fluid">
 <p>
 <%= description %>
 </p>
+</div> -->
+<div class="container-fluid">
+<div class="row row-cols-2">
+<% products.forEach(function(p){ %>
+    <!-- <p>
+    <%= p.name %>
+    </p> -->
+    <div class="col bg-success"> hey
+        <!-- <div class = "thumbnail">
+
+        </div> -->
+        </div>
+
+    <% }); %>
 </div>
+</div> 
 
 </body>
 </html>
