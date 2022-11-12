@@ -46,37 +46,57 @@ imageUrl: "https://via.placeholder.com/150",
 description: "description placeholder",
 manufacturerId: 2,
 },
-// {
-// id: 5,
-// name:
-// "DESPICABLE ME 2 - Minion cuddly Soft Toy - Plush Figures Banana 28-33 cm, Minion Typ:Bob",
-// price: 19.99,
-// imageUrl: "https://via.placeholder.com/150",
-// description: "description placeholder",
-// manufacturerId: 2,
-// },
+{
+id: 5,
+name:
+"DESPICABLE ME 2 - Minion cuddly Soft Toy - Plush Figures Banana 28-33 cm, Minion Typ:Bob",
+price: 19.99,
+imageUrl: "https://via.placeholder.com/150",
+description: "description placeholder",
+manufacturerId: 2,
+},
 ];
 
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.redirect(302, "products");
-  });
-  /* GET products listing page. */
-  router.get("/products", function (req, res, next) {
-  res.render("products", {
-  title: "Product Listing",
-  description: "This page shows a list of products.",
-  products: products,
-  });
-  });
-  /* GET product page. */
+});
+/* GET products listing page. */
+router.get("/products", function (req, res, next) {
+res.render("products", {
+title: "Product Listing",
+description: "This page shows a list of products.",
+products: products,
+});
+});
+/* GET product page. */
   router.get("/products/:id", function (req, res, next) {
-  res.render("product", {
-  title: "Product Page",
-  description: "This page shows the details of a product",
-  });
-  });
+// Fill in the code: get the parameter
+var requestedId = req.params["id"];
+console.log("Check",requestedId);
+
+
+// Get the requested product from the product list
+var requestedProduct = products.filter(function (product) {
+return product.id == requestedId;
+});
+
+console.log(requestedProduct[0]);
+// Check if the requested product id exist
+if (requestedProduct.length > 0) {
+res.render("product", {
+title: requestedProduct[0].name,
+product: requestedProduct[0],
+description: requestedProduct[0].description,
+imageUrl: requestedProduct[0].imageUrl,
+});
+} else {
+// 404 Product not found
+res.status(404).send("Product not found");
+}
+});
+
   /* GET manufacturer listing page. */
   router.get("/manufacturers", function (req, res, next) {
   res.render("manufacturers", {

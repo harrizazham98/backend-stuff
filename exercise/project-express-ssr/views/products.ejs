@@ -28,26 +28,28 @@ Product Catalogue
 </ul>
 </div>
 </nav>
-<!-- <div class="container-fluid">
+<div class="container-fluid">
 <p>
 <%= description %>
 </p>
-</div> -->
-<div class="container-fluid">
-<div class="row row-cols-2">
+</div>
+<div class="row">
 <% products.forEach(function(p){ %>
-    <!-- <p>
-    <%= p.name %>
-    </p> -->
-    <div class="col bg-success"> hey
-        <!-- <div class = "thumbnail">
-
-        </div> -->
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+        <img src=<%=p.imageUrl%> alt="product-image">
+        <div class="caption">
+        <h3><%=p.name%></h3>
+        <p>
+        <a href="/products/<%= p.id %>" class="btn btn-primary">Details</a>
+        </p>
         </div>
+        </div>
+        </div>
+        
 
     <% }); %>
 </div>
-</div> 
 
 </body>
 </html>
