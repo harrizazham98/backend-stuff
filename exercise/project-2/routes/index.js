@@ -31,31 +31,57 @@ router.get('/category', function(req, res, next) {
 });
 
 //RETRIEVE
-router.get("/category/:id",
- check("id").isInt(),
- function (req, res, next) {
- // Validate
- const errors = validationResult(req);
- if (!errors.isEmpty()) {
- // error response
- return res.status(400).json({ errors: errors.array() });
- }
- connection
- .raw(`select * from category where id = ?;`, [req.params["id"]]) // it is a promise
- .then(function (result) {
- var categories = result[0];
- res.json({
- result: parseInt(req.params["id"]) , "status" : "gotten", category : categories
- });
- })
- .catch(function (error) {
+/* Retrieve a manufacturer with id = :id */
+ router.get('/category/:id', function(req, res, next) {
+   //knex connection
+   connection
+  .raw(`select * from category where id = ?`,
+ [req.params["id"]])
+   .then(function (result) {
+   var categories = result[0];
+   // send back the query result as json
+  res.json({
+  category: categories[0],
+  });
+  })
+  .catch(function (error) {
   // log the error
-  console.log(error);
+ console.log(error);
   res.json(500, {
-  "message": error
+ message: error,
   });
-  });
-});
+ });
+ });
+ 
+
+
+
+// router.get("/category/:id",
+//  check("id").isInt(),
+//  function (req, res, next) {
+//  // Validate
+//  const errors = validationResult(req);
+//  if (!errors.isEmpty()) {
+//  // error response
+//  return res.status(400).json({ errors: errors.array() });
+//  }
+//  connection
+//  raw(`select * from category where id = ` +req.params["id"])
+//  // it is a promise
+//  .then(function (result) {
+//  var categories = result[0];
+//  res.json({
+//  result: parseInt(req.params["id"]) , "status" : "gotten", category : categories
+//  });
+//  })
+//  .catch(function (error) {
+//   // log the error
+//   console.log(error);
+//   res.json(500, {
+//   "message": error
+//   });
+//   });
+// });
 
 //CREATE
 router.post('/category',function(req, res, next){ 
@@ -196,10 +222,10 @@ router.post('/items', function(req, res,next){
 console.log("POST Request", req.body);
 var promise = connection.raw(
 `
-insert into items (id, name, price, category_id)
-values (?,?,?,?)
+insert into items ( name, price, category_id)
+values (?,?,?)
 `,
-[req.body["id"],req.body["name"],req.body["price"],req.body["category_id"]]
+[req.body["name"],req.body["price"],req.body["category_id"]]
 );
 promise.then(function (result) {
 res.json({

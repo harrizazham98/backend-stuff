@@ -12,6 +12,7 @@ module.exports = {
  user: "studentmysql",
  password: "studentmysql",
  database: "harriz",
+ multipleStatements:true,
  },
 
 
