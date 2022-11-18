@@ -1,14 +1,17 @@
 var express = require('express');
 var router = express.Router();
 const { check, validationResult} = require("express-validator");
-var connection = require('../database.js')
+// var connection = require('../database.js')
+var knex = require("knex")
+var environment =process.env.NODE_ENV || "development";
+var config = require("../knexfile")
+
+var environmentConfig = config[environment];
+var connection = knex(environmentConfig)
+var sanitizeHtml = require('sanitize-html')
 
 
 //CATEGORY
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
 //LIST
 router.get('/category', function(req, res, next) {
@@ -35,8 +38,7 @@ router.get('/category', function(req, res, next) {
  router.get('/category/:id', function(req, res, next) {
    //knex connection
    connection
-  .raw(`select * from category where id = ?`,
- [req.params["id"]])
+  .raw(`select * from manufacturer where id = `, [req.params["id"]])
    .then(function (result) {
    var categories = result[0];
    // send back the query result as json
@@ -225,7 +227,7 @@ var promise = connection.raw(
 insert into items ( name, price, category_id)
 values (?,?,?)
 `,
-[req.body["name"],req.body["price"],req.body["category_id"]]
+[sanitizeHtml(req.body["name"]),req.body["price"],req.body["category_id"]]
 );
 promise.then(function (result) {
 res.json({
