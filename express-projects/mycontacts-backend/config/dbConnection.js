@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 // const uri = "mongodb+srv://harrizazham98:H@yu@!m@n46@cluster0.bajvmiq.mongodb.net/Mydatabase?retryWrites=true&w=majority";
 
-const username = "harrizazham98";
-const password = "H%40yu%40%21m%40n46";
-const cluster = "cluster0";
-const dbname = "Mydatabase";
+const username = "djfkgnjzdndnhjn";
+const password = "sgldgbdhgdgf";
+const cluster = "jbndjlgn";
+const dbname = "Mjngdfngn";
 
 mongoose.connect(
   `mongodb+srv://${username}:${password}@${cluster}.bajvmiq.mongodb.net/${dbname}?retryWrites=true&w=majority`, 
